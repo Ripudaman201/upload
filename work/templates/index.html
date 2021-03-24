@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}Home
+{% block body %}
+
+
+
+
+
+{% comment %} <ul class="nav justify-content-center">
+  <li class="nav-item active text-center">
+    <a class="nav-link active" aria-current="page" href="/">Company</a>
+  </li>
+  <li class="nav-item active text-center">
+    <a class="nav-link" href="/about">About</a>
+  </li>
+  <li class="nav-item active text-center">
+    <a class="nav-link" href="/register">Register</a>
+  </li>
+  <li class="nav-item active text-center">
+    <a class="nav-link" href="/login"> Login </a>
+  </li>
+</ul> {% endcomment %}
+
+
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Company</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      {% if user.is_authenticated %}
+
+
+
+      <li class="nav-item active text-center">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+      <li class="nav-item active text-center">
+        <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+      </li>
+
+
+
+      {% else %}
+
+      <li class="nav-item active text-center">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+      <li class="nav-item active text-center">
+        <a class="nav-link" href="/register">Register</a>
+      </li>
+
+
+
+
+
+      {% endif %}
+    </ul>
+
+  </div>
+</nav>
+
+{% if user.is_authenticated %}
+<h1> Hey Upload your file here </h1>
+<br>
+
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="file" name="file">
+  <br>
+  <input type="submit" name="" id="">
+
+
+</form>
+
+
+{% endif %}
+
+
+
+
+
+{% endblock body %}
